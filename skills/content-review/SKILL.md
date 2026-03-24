@@ -23,34 +23,47 @@ Ask the user (or infer from context):
 - Is the reading flow logical (problem → solution → proof → action)?
 
 ### Brand Consistency
-- Does the tone match the company's voice?
-- Is the tone consistent throughout (no sudden shifts)?
-- Is there any aggressive sales language that feels off-brand?
+- Does the tone match the company's voice throughout — no sudden shifts?
+- Check for tone killers:
+  - Exclamation points in professional/trust-building copy (almost never appropriate)
+  - Aggressive sales language ("Act NOW!", "Don't miss out!", "Limited time!")
+  - Filler phrases that add no value ("We are pleased to...", "It's worth noting that...")
 
-### Formatting
-- Are headings clear and benefit-oriented?
-- Are bullet points used for lists (not long paragraphs)?
+### Formatting Rules
+- **Never use em dashes (—)** in web copy. Use regular hyphens (-) or rewrite the sentence. Em dashes look broken on many devices and feel literary, not professional.
+- Are headings benefit-oriented (what the reader gets, not what the company does)?
+- Are bullet points used for lists instead of dense paragraphs?
 - Is there enough white space to make scanning easy?
 
 ### Trust Signals
 - Is regulatory, certification, or credential information present where needed?
-- Are testimonials authentic and specific?
-- Is social proof placed near decision points (CTAs)?
+- Are testimonials specific and credible (real details, not "Great service! - John")?
+- Is social proof placed near decision points (CTAs), not just at the bottom?
 
-### CTA Copy
-- Do CTAs link to the right destinations?
-- Is there a clear primary CTA and a secondary option?
-- Are button labels action-oriented ("Get Started", not "Submit")?
+### CTA Destinations
+- Do CTAs actually link to the right place? (Sounds obvious — check anyway.)
+- Is there a clear primary CTA and a secondary option for people not ready to commit?
+- Are button labels action-oriented ("Get Started", "Open Account", not "Submit" or "Click Here")?
 
 ### Microcopy
-- Are form labels short, clear, and informative?
-- Are error messages helpful, not blaming?
-- Are button labels action-oriented?
+- Are form labels short, clear, and helpful?
+- Are error messages helpful, not blaming ("Please enter a valid email" not "Error: invalid input")?
+- Do placeholder texts actually help the user (example values, not redundant labels)?
+
+### Numbers, Currencies & Formatting
+- Are currency symbols and formats correct and consistent (₪, $, €, £)?
+- Are numbers formatted for readability (1,000 not 1000)?
+- Are percentages and rates displayed consistently?
+
+### Bilingual / Multilingual Content
+- If the page has content in multiple languages — are translations accurate and natural, not machine-translated?
+- Is the language toggle easy to find?
+- Are names, dates, and numbers formatted correctly for each locale?
 
 ### Spelling & Grammar
 - Any typos or grammatical errors?
-- Are currency symbols and number formats correct?
-- If bilingual content — are translations accurate?
+- Are proper nouns capitalized correctly?
+- Are acronyms explained on first use?
 
 ## Output Format
 

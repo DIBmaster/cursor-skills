@@ -11,7 +11,7 @@ Review the page as a senior UX designer. Be specific and actionable — give gra
 
 ### Above the Fold
 - Is the value proposition immediately clear?
-- Is there a visible CTA without scrolling (desktop and mobile)?
+- Is there a visible CTA without scrolling (desktop AND mobile — check both)?
 - Does the hero section load fast and look clean?
 
 ### Layout & Visual Hierarchy
@@ -22,9 +22,15 @@ Review the page as a senior UX designer. Be specific and actionable — give gra
 
 ### CTAs (Calls to Action)
 - Is the primary CTA obvious and prominent?
-- Is there a clear distinction between primary and secondary CTAs?
-- Are CTAs placed at natural decision points (not just at the bottom)?
-- Do CTA labels use action words ("Get Started", not "Submit")?
+- Is there a clear visual distinction between primary and secondary CTAs?
+- Are CTAs placed at **natural decision points** — after trust signals, after benefits, after objection handling? (Not just at the top and bottom.)
+- Do CTA labels use action words ("Get Started", "Open Account", not "Submit")?
+
+### Form & Data Entry Trust
+If the page has forms that ask for sensitive information (financial, personal, health):
+- Does the form feel safe? Are there trust signals near the input fields?
+- Is the amount of data requested proportional to the stage? (Don't ask for everything upfront.)
+- Are multi-step forms broken into logical steps with progress indicators?
 
 ### Mobile Responsiveness
 - Does the layout work well on mobile (375px)?
@@ -40,13 +46,14 @@ Review the page as a senior UX designer. Be specific and actionable — give gra
 - Do images have meaningful alt text?
 
 ### Image Quality
-- Are images high quality originals (not compressed or low-res)?
+- Are images high quality originals — not compressed screenshots, chat uploads, or low-res placeholders?
 - Are images served in WebP format for performance?
-- If images look blurry or pixelated, flag it.
+- If images look blurry or pixelated, flag it. Source files should come from original assets (design tools, Drive, asset library), never from chat messages or screenshots.
 
 ### Loading & Empty States
 - Are loading states handled (skeletons for content, spinners for actions)?
 - Are empty states friendly and have a clear next step?
+- If data fails to load, is there a helpful error state (not a blank page)?
 
 ## Output Format
 
