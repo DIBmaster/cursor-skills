@@ -73,15 +73,19 @@ cp -r /path/to/cursor-skills/skills/* ~/.cursor/skills/
 
 ## Make Them Yours
 
-These skills are generic starting points. They get much more powerful when you add your own context:
+These skills were extracted from a real production setup — a fintech product with regulatory requirements, multiple apps, and real money on the line. I stripped out all the company-specific details and made them generic so anyone can use them.
 
-- **Hardcode your brand voice** into the Content Review so you don't have to describe it every time
-- **Add your build commands and app names** to the Pre-Deploy Checklist
-- **Add your competitors** to the CMO Review so it always benchmarks against them
-- **Customize the Product Update categories** to match your team's Slack format
-- **Add industry-specific security checks** — if you handle payments, PII, health data, add those checks to the pre-deploy checklist
+But generic is just the starting point. **The real power comes when you make them specific to your business.** That's what I did, and it's what made them actually useful instead of just another checklist.
 
-The best skills are the ones that encode the things you keep repeating. If you've told Cursor the same thing three times, it should be a skill.
+Here's what to customize:
+
+- **CMO Review** — Add your industry, your competitors, and your differentiators. My version has my competitors hardcoded so it always benchmarks against them. Yours should too.
+- **Content Review** — Add your brand voice. Mine has specific rules like "no exclamation points" and "no em dashes" baked in. Define what "on-brand" means for you so the AI doesn't have to guess.
+- **Pre-Deploy Checklist** — Add your app names, your build commands, and your specific security requirements. If you handle payments, add payment-specific checks. If you handle health data, add HIPAA checks. Make it match YOUR risk profile.
+- **Product Update** — Customize the categories and format to match where you share updates (Slack, email, Notion).
+- **SEO & AI Review** — Add your target keywords and competitor URLs for benchmarking.
+
+The rule of thumb: **if you've told Cursor the same thing three times, it should be a skill.** Copy these, customize them, and stop repeating yourself.
 
 ## How Skills Work
 
