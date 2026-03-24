@@ -40,16 +40,6 @@ The pre-deploy checklist was born from real near-misses — a shared type change
 
 **How to use**: Say *"Run the pre-deploy checklist"* before deploying, or *"Generate a product update for this week"* on Friday afternoon.
 
-## Cursor Meta-Skills
-
-Skills for building more skills and managing Cursor itself.
-
-| Skill | What It Does |
-|-------|-------------|
-| [Create Rule](./skills/create-rule/) | Helps you create `.cursor/rules/` files — persistent instructions the AI follows every session |
-| [Create Skill](./skills/create-skill/) | Guides you through authoring new skills with proper structure, descriptions, and best practices |
-| [Update Cursor Settings](./skills/update-cursor-settings/) | Modifies Cursor/VSCode settings.json — knows file locations for macOS, Linux, and Windows |
-
 ## Installation
 
 ### Copy individual skills
