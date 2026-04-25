@@ -81,9 +81,7 @@
     }
     .hero-avatar {
       width: 48px; height: 48px; border-radius: 50%;
-      background: var(--orange);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 18px; color: white;
+      object-fit: cover;
       flex-shrink: 0;
     }
     .hero-author-info { text-align: left; }
@@ -286,7 +284,7 @@
   <h1>How I Build<br><span>With AI</span></h1>
   <p class="hero-sub">Real lessons from a CPO who ships production apps without a full-time dev team. No theory. Just what worked.</p>
   <div class="hero-author">
-    <div class="hero-avatar">DB</div>
+    <img class="hero-avatar" src="david.jpeg" alt="David Balsam">
     <div class="hero-author-info">
       <div class="hero-author-name">David Balsam</div>
       <div class="hero-author-role">CPO & Co-Founder, Adesco · Fintech Builder</div>
