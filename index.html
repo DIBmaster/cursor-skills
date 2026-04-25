@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How I Build With AI — David Balsam</title>
+  <meta name="description" content="Real lessons from a CPO who ships production apps with AI. No dev team. No excuses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1B2A4A;
+      --blue:   #0074E0;
+      --orange: #FF640D;
+      --ink:    #2D3748;
+      --muted:  #718096;
+      --rule:   #E8E6E1;
+      --bg:     #F8F7F4;
+      --white:  #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-weight: 700; font-size: 15px; color: var(--navy); text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 500; }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 64px 0; }
+    section + section { border-top: 1px solid var(--rule); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      padding: 80px 24px 72px;
+      text-align: center;
+    }
+    .hero-label {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+      font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 8vw, 64px);
+      font-weight: 900; color: var(--white); line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .hero h1 span { color: #60A5FA; }
+    .hero-sub {
+      font-size: clamp(16px, 3vw, 20px);
+      color: rgba(255,255,255,0.65);
+      max-width: 520px; margin: 20px auto 0;
+      line-height: 1.5;
+    }
+    .hero-author {
+      margin-top: 40px;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+    }
+    .hero-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 18px; color: white;
+      flex-shrink: 0;
+    }
+    .hero-author-info { text-align: left; }
+    .hero-author-name { font-weight: 700; color: white; font-size: 15px; }
+    .hero-author-role { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+    /* ── SECTION HEADER ── */
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 900; color: var(--navy); line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .section-intro {
+      font-size: 16px; color: var(--muted); margin-bottom: 40px; line-height: 1.7;
+    }
+
+    /* ── CARDS ── */
+    .card-grid { display: grid; gap: 16px; }
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .card-num {
+      font-size: 11px; font-weight: 700; color: var(--orange);
+      letter-spacing: 1px; margin-bottom: 10px;
+    }
+    .card h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .card-highlight {
+      border-left: 3px solid var(--blue);
+      background: #EFF6FF;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-top: 14px;
+      font-size: 13px; color: var(--navy); font-weight: 500; line-height: 1.6;
+    }
+
+    /* ── PROMPT FORMULA ── */
+    .formula-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .formula-item {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .formula-key {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      color: var(--blue); text-transform: uppercase; margin-bottom: 6px;
+    }
+    .formula-val { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .formula-example { font-size: 12px; color: var(--muted); }
+
+    /* ── STATES ── */
+    .states-row {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+      text-align: center;
+    }
+    .state-item { padding: 16px 8px; }
+    .state-icon { font-size: 24px; margin-bottom: 8px; }
+    .state-name { font-size: 11px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* ── STACK ── */
+    .stack-item {
+      display: flex; align-items: flex-start; gap: 18px;
+      padding: 20px 0; border-bottom: 1px solid var(--rule);
+    }
+    .stack-item:last-child { border-bottom: none; }
+    .stack-logo {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+      font-weight: 900; color: white; font-size: 13px;
+    }
+    .stack-info h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .stack-info p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .stack-tag {
+      display: inline-block; margin-top: 8px;
+      font-size: 11px; font-weight: 600; color: var(--blue);
+      background: #EFF6FF; border-radius: 4px; padding: 2px 8px;
+    }
+
+    /* ── CODE BLOCKS ── */
+    .prompt-block {
+      background: #111827;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .prompt-label {
+      font-size: 11px; font-weight: 600; color: #60A5FA;
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .prompt-block pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; color: #E5E7EB;
+      white-space: pre-wrap; line-height: 1.7;
+    }
+    .prompt-block em { color: #FCA5A5; font-style: normal; }
+
+    /* ── SKILLS ── */
+    .skill-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 18px 0; border-bottom: 1px solid var(--rule);
+    }
+    .skill-item:last-child { border-bottom: none; }
+    .skill-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .skill-info h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .skill-info p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .skill-grade {
+      margin-left: auto; flex-shrink: 0;
+      font-size: 11px; font-weight: 700; color: var(--muted);
+      background: var(--bg); border: 1px solid var(--rule);
+      border-radius: 4px; padding: 3px 8px; align-self: flex-start; margin-top: 2px;
+    }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: #FFF7ED;
+      border: 1px solid #FED7AA;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .callout-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .callout h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .callout p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 56px 24px;
+      text-align: center;
+    }
+    footer h2 { font-size: 28px; font-weight: 900; color: white; margin-bottom: 10px; }
+    footer p { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 32px; }
+    .footer-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: var(--blue); color: white; }
+    .btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+    .btn-ghost { background: var(--bg); color: var(--navy); }
+    .footer-note { margin-top: 40px; font-size: 12px; color: rgba(255,255,255,0.25); }
+
+    /* ── BADGE ── */
+    .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .badge {
+      font-size: 12px; font-weight: 600;
+      padding: 4px 12px; border-radius: 100px;
+      background: var(--bg); border: 1px solid var(--rule);
+      color: var(--muted);
+    }
+    .badge.blue { background: #EFF6FF; color: var(--blue); border-color: #BFDBFE; }
+    .badge.orange { background: #FFF7ED; color: var(--orange); border-color: #FED7AA; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 12px 16px; }
+      .nav-links { display: none; }
+      .hero { padding: 56px 20px 52px; }
+      section { padding: 48px 0; }
+      .formula-grid { grid-template-columns: 1fr; }
+      .states-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .prompt-block pre { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">David Balsam · Builder</a>
+  <div class="nav-links">
+    <a href="#mindset">Mindset</a>
+    <a href="#formula">Prompts</a>
+    <a href="#stack">Stack</a>
+    <a href="#skills">Skills</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PM Live · 2026</div>
+  <h1>How I Build<br><span>With AI</span></h1>
+  <p class="hero-sub">Real lessons from a CPO who ships production apps without a full-time dev team. No theory. Just what worked.</p>
+  <div class="hero-author">
+    <div class="hero-avatar">DB</div>
+    <div class="hero-author-info">
+      <div class="hero-author-name">David Balsam</div>
+      <div class="hero-author-role">CPO & Co-Founder, Adesco · Fintech Builder</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXT -->
+<section id="context">
+  <div class="container">
+    <p class="section-label">The context</p>
+    <h2>I'm not an engineer.<br>I ship anyway.</h2>
+    <p class="section-intro">I run a fintech company with two apps, a legacy accounting system, regulatory requirements, and zero full-time developers. I build with Cursor, Lovable, and Supabase. Over the last year, I went from mockups to a full multi-tenant payment platform — in 90 days, with two people. These are the lessons.</p>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <h3>The shift that changes everything</h3>
+        <p>You're not coding. You're designing systems. Every prompt is a brief you're giving to an engineer. Every bug is feedback from a user. Every edge case is a feature waiting to fail. Once you think this way, everything else follows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINDSET -->
+<section id="mindset">
+  <div class="container">
+    <p class="section-label">01 · The mindset</p>
+    <h2>Before you build anything</h2>
+    <p class="section-intro">The mistakes I made when I started weren't technical. They were strategic. Here's what I wish I'd known.</p>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-num">01</div>
+        <h3>Plan before you build</h3>
+        <p>AI doesn't plan ahead unless you do. If you just say "build this," it starts at the top and skips everything else. Prompt together first — see the structure, make edits, then implement. Every time I skipped this step, it cost me.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">02</div>
+        <h3>Give context, always</h3>
+        <p>AI doesn't know your context. What page are you on? Which user sees this? Which component is affected? The more context you give, the less guessing it does. Take the extra 30 seconds. It saves hours.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">03</div>
+        <h3>Design for real life, not the happy path</h3>
+        <p>Every feature you build has five states. If you only build the success state, you've built half a feature — and the other half will humiliate you in front of a user.</p>
+        <div class="card-highlight">Build every feature with 5 states: Default · Loading · Success · Error · Empty</div>
+      </div>
+
+      <div class="card">
+        <div class="card-num">04</div>
+        <h3>Git is your undo button</h3>
+        <p>Even if you're not technical, set up Git from day one. Use branches for each feature, commit often, push to GitHub. AI makes mistakes. So do you. Git means you can always go back.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">05</div>
+        <h3>Track what users do</h3>
+        <p>If you don't log user events, you're building blind. Create a user_events table. Track login, key actions, form submissions. Ask yourself: can I answer "what did the user do?" If not, you're guessing.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">06</div>
+        <h3>Test like a human, not a developer</h3>
+        <p>Log in. Log out. Go through the whole flow. Try it on mobile. Pretend it's your first time. Then try to break it — refresh mid-form, submit weird data, remove required fields. If it handles all of that, you're done.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROMPT FORMULA -->
+<section id="formula">
+  <div class="container">
+    <p class="section-label">02 · The prompt formula</p>
+    <h2>Structure every prompt like a brief</h2>
+    <p class="section-intro">If you can't explain it clearly, the AI won't build it correctly. These six elements work at the beginning of a project and at the feature level as you go.</p>
+
+    <div class="formula-grid">
+      <div class="formula-item">
+        <div class="formula-key">WHAT</div>
+        <div class="formula-val">What you're building</div>
+        <div class="formula-example">e.g. "A recipient selection screen"</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-key">WHO</div>
+        <div class="formula-val">Who it's for</div>
+        <div class="formula-example">e.g. "A lawyer under time pressure at 10pm"</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-key">PURPOSE</div>
+        <div class="formula-val">What it should do</div>
+        <div class="formula-example">e.g. "Fast validation, not a complete form"</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-key">DESIGN</div>
+        <div class="formula-val">What it should look like</div>
+        <div class="formula-example">e.g. "Here's a screenshot of the competitor"</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-key">STATES</div>
+        <div class="formula-val">All conditions to handle</div>
+        <div class="formula-example">e.g. "Loading, empty, error, full"</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-key">CONSTRAINTS</div>
+        <div class="formula-val">Technical limits</div>
+        <div class="formula-example">e.g. "Must work on mobile, RLS enabled"</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <p class="section-label" style="margin-bottom: 20px;">Key prompts · copy and use</p>
+
+      <div class="prompt-block">
+        <div class="prompt-label">When you're stuck in an error loop</div>
+        <pre>"Review the full code. List all issues you found. Suggest a fix for each one and share them with me. Then suggest a fix that addresses all the issues together."</pre>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">Build an auth flow</div>
+        <pre>"Create an authentication flow using Supabase. Include:
+- Sign-up: email + password + name
+- Login with email and password
+- Forgot password flow
+- Redirect: if onboarding incomplete → onboarding. Otherwise → dashboard."</pre>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">Multi-tenant data structure</div>
+        <pre>"Build a multi-tenant structure where each record is tied to a client_id. Allow an admin user to switch between clients using a dropdown, and make sure only the selected client's data is shown. Include role-based access logic and data filtering."</pre>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">File uploads</div>
+        <pre>"Set up a file upload system using Supabase Storage. Allow users to upload documents and save metadata in a 'documents' table with: user_id, file_url, type, label, created_at. Include functionality to update the label and delete the file."</pre>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">Security — Row-Level Security</div>
+        <pre>"Enable Row-Level Security in Supabase for all sensitive tables. Write RLS policies so users can only access rows where client_id matches their assigned client. For admin users, allow access to multiple clients. Add a 'role' field to differentiate user types."</pre>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">Wrap a component with all 5 states</div>
+        <pre>"Wrap this component with loading, success, error, and empty states. Add helpful CTAs for each state. If the API fails, show a retry button and a friendly error message. On mobile, show rows as cards instead of a table."</pre>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- THE STACK -->
+<section id="stack">
+  <div class="container">
+    <p class="section-label">03 · The stack</p>
+    <h2>Four tools. That's it.</h2>
+    <p class="section-intro">I tried a lot of tools. These four stayed. Each one does one thing well, and they connect cleanly.</p>
+
+    <div>
+      <div class="stack-item">
+        <div class="stack-logo" style="background:#1B2A4A;">⌨️</div>
+        <div class="stack-info">
+          <h3>Cursor</h3>
+          <p>My main coding environment. I write every feature here using AI agents. It reads my codebase, understands context, and follows my custom skills. When Lovable hits its limits, Cursor handles the rest.</p>
+          <span class="stack-tag">Primary IDE</span>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-logo" style="background:#7C3AED;">💜</div>
+        <div class="stack-info">
+          <h3>Lovable</h3>
+          <p>Build full applications from a prompt — UI, logic, and Supabase integration in one place. Best for prototyping fast and validating quickly. Once things get complex, I move to Cursor.</p>
+          <span class="stack-tag">Rapid prototyping</span>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-logo" style="background:#1C8E5F;">🟢</div>
+        <div class="stack-info">
+          <h3>Supabase</h3>
+          <p>The entire backend: auth, database, file storage, edge functions, and Row-Level Security. It's what AWS would be if someone actually designed it for people who aren't backend engineers.</p>
+          <div class="badge-row">
+            <span class="badge blue">Auth</span>
+            <span class="badge blue">Database</span>
+            <span class="badge blue">Storage</span>
+            <span class="badge blue">Edge Functions</span>
+            <span class="badge blue">RLS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-logo" style="background:#24292E;">😺</div>
+        <div class="stack-info">
+          <h3>GitHub</h3>
+          <p>Version control and your safety net. Branch for every feature. Commit often. If an AI change breaks something, you go back. If an experiment fails, you go back. Non-negotiable.</p>
+          <span class="stack-tag">Undo button for everything</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURSOR SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">04 · Cursor skills</p>
+    <h2>The playbook I built so I stop repeating myself</h2>
+    <p class="section-intro">Every time I told Cursor the same thing three times, I turned it into a skill. These six replace a marketing agency, a UX consultant, a safety team, and a stakeholder update process.</p>
+
+    <div style="margin-bottom: 32px;">
+
+      <div class="skill-item">
+        <div class="skill-icon" style="background:#FFF7ED;">💰</div>
+        <div class="skill-info">
+          <h3>CMO Conversion Review</h3>
+          <p>"Will this page make money?" — Gives a conversion grade, competitive positioning, and a prioritized 1-hour fix list.</p>
+        </div>
+        <div class="skill-grade">Page Review</div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-icon" style="background:#EFF6FF;">✍️</div>
+        <div class="skill-info">
+          <h3>Content Review</h3>
+          <p>"Is the copy clear and on-brand?" — Checks tone consistency, readability, and gives specific rewrite suggestions.</p>
+        </div>
+        <div class="skill-grade">Page Review</div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-icon" style="background:#F0FDF4;">🔍</div>
+        <div class="skill-info">
+          <h3>SEO & AI Citation Review</h3>
+          <p>"Will Google and ChatGPT find this?" — Audits metadata, structured data, heading hierarchy, and AI citation readiness.</p>
+        </div>
+        <div class="skill-grade">Page Review</div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-icon" style="background:#FDF4FF;">🎨</div>
+        <div class="skill-info">
+          <h3>UX / Design Review</h3>
+          <p>"Does this feel right to use?" — Checks mobile responsiveness, accessibility, visual hierarchy, and touch targets.</p>
+        </div>
+        <div class="skill-grade">Page Review</div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-icon" style="background:#FFF1F2;">🛡️</div>
+        <div class="skill-info">
+          <h3>Pre-Deploy Checklist</h3>
+          <p>Reviews every changed file for security issues, cross-app breakage, missing error handling, and floating point money bugs. Returns: GO / NEEDS FIXES / DO NOT DEPLOY.</p>
+        </div>
+        <div class="skill-grade">Safety</div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-icon" style="background:#F0FDF4;">📋</div>
+        <div class="skill-info">
+          <h3>Product Update</h3>
+          <p>Reads your git history and generates a clean, non-technical summary for stakeholders. No jargon, no commit hashes — just what changed and who it helps.</p>
+        </div>
+        <div class="skill-grade">Communication</div>
+      </div>
+
+    </div>
+
+    <a href="https://github.com/DIBmaster/cursor-skills" target="_blank" rel="noopener" class="btn btn-ghost" style="display:inline-flex;">
+      <span>⭐</span> View all skills on GitHub
+    </a>
+  </div>
+</section>
+
+<!-- THE BACKEND BLUEPRINT -->
+<section id="backend">
+  <div class="container">
+    <p class="section-label">05 · The backend blueprint</p>
+    <h2>How I built a real backend</h2>
+    <p class="section-intro">When people read my first guide, they asked: "OK but how do I build something where users can log in, upload files, and pay?" This is the answer. Six building blocks that work together.</p>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-num">01 · Auth</div>
+        <h3>Login, sign-up, forgot password</h3>
+        <p>Use Supabase's built-in auth. Connect it in Lovable by pasting your project URL and key. You get sign-up, login, forgot password, and redirect logic out of the box. First-time users go to onboarding. Everyone else goes to their dashboard.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">02 · Multi-tenant</div>
+        <h3>One app, many clients</h3>
+        <p>Every record in your database gets a client_id. Admins can switch between clients via a dropdown. Users only see data for their current client. I tested this with mock data first — two fake clients with completely separate records — to catch cross-client bugs early.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">03 · Payments & Balances</div>
+        <h3>Track every cent</h3>
+        <p>Build a balances table (user_id, currency, amount) and a transactions table (user_id, amount, currency, recipient_id, timestamp, status). Status starts as pending, moves to completed or failed. When completed, subtract from balance. This becomes the backbone of the product.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">04 · File Uploads</div>
+        <h3>Documents, IDs, contracts</h3>
+        <p>Uploads go to Supabase Storage. Each file gets metadata in a documents table: user_id, file_url, type, label, created_at. Users can rename and delete files. All paperwork, secured, organized, in the app.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">05 · Security</div>
+        <h3>Row-Level Security</h3>
+        <p>Enable RLS on every table. Users can only read rows where client_id matches theirs. Admins get access to their assigned clients only. Add a role field to users to differentiate. If you handle money or personal data, this is not optional.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">06 · Third-party integrations</div>
+        <h3>Edge functions for everything else</h3>
+        <p>Need to send emails, post to Slack, trigger an automation? Use Supabase Edge Functions. Small backend scripts that run on events. Store API keys as environment variables — never expose them in the frontend. This is how I connected to Resend, payment APIs, and more.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <h2>Let's keep building.</h2>
+    <p>Questions, feedback, or want to share what you built?<br>I'd genuinely love to hear from you.</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/davidbalsam/" target="_blank" rel="noopener" class="btn btn-primary">
+        <span>💼</span> Connect on LinkedIn
+      </a>
+      <a href="https://github.com/DIBmaster/cursor-skills" target="_blank" rel="noopener" class="btn btn-secondary">
+        <span>⭐</span> Cursor Skills on GitHub
+      </a>
+    </div>
+    <p class="footer-note">David Balsam · CPO & Co-Founder, Adesco · PM Live 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
