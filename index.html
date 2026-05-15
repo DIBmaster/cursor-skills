@@ -40,7 +40,9 @@
       padding: 14px 24px;
       display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-brand { font-weight: 700; font-size: 15px; color: var(--navy); text-decoration: none; }
+    .nav-brand { text-decoration: none; display: flex; flex-direction: column; }
+    .nav-brand-title { font-weight: 700; font-size: 15px; color: var(--navy); line-height: 1.2; }
+    .nav-brand-sub { font-size: 12px; font-weight: 500; color: var(--muted); }
     .nav-links { display: flex; gap: 24px; }
     .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 500; }
     .nav-links a:hover { color: var(--blue); }
@@ -349,7 +351,10 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-brand" href="#">David Balsam · CPO, Adesco</a>
+  <a class="nav-brand" href="#">
+    <span class="nav-brand-title">How I Build With AI</span>
+    <span class="nav-brand-sub">David Balsam · CPO, Adesco</span>
+  </a>
   <div class="nav-links">
     <a href="#roles">The Roles</a>
     <a href="#mindset">Mindset</a>
@@ -785,7 +790,7 @@
 <footer>
   <div class="container">
     <h2>I post every week about what we shipped,<br>what broke, and what I learned.</h2>
-    <p>If you're a PM, founder, or product team building with AI, follow along on LinkedIn.<br>It's the fastest way to stay current on what's actually working.</p>
+    <p>If you're a PM, founder, or product team building with AI, follow along on LinkedIn.<br>I share what is actually working for us and what is not.</p>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/david-balsam-36047280/" target="_blank" rel="noopener" class="btn btn-primary">
         <span>💼</span> Follow on LinkedIn
