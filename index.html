@@ -760,9 +760,12 @@
 
     <form
       class="contact-form"
-      action="https://formsubmit.co/ajax/dbalsam88@gmail.com"
+      action="https://formsubmit.co/dbalsam88@gmail.com"
       method="POST"
     >
+      <input type="hidden" name="_subject" value="Speaking enquiry from cursor-skills page">
+      <input type="hidden" name="_next" value="https://dibmaster.github.io/cursor-skills/thanks.html">
+      <input type="hidden" name="_captcha" value="false">
       <div class="form-row">
         <input type="text" name="name" placeholder="Your name" required>
         <input type="text" name="company" placeholder="Company" required>
@@ -773,24 +776,8 @@
       </div>
       <button type="submit" class="form-submit">Send me a message</button>
     </form>
-    <div class="form-success" id="form-success">Thanks! I'll be in touch shortly.</div>
   </div>
 </section>
-
-<script>
-  const form = document.querySelector('#speaking form');
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-      if (res.ok) {
-        form.style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      }
-    });
-  }
-</script>
 
 <!-- FOOTER -->
 <footer>
