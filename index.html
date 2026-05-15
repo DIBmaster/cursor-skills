@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How I Build With AI — David Balsam</title>
-  <meta name="description" content="Real lessons from a CPO who ships production apps with AI. No dev team. No excuses.">
+  <meta name="description" content="How a CPO and a developer used AI to ship a fintech platform in 90 days. The Builder and Architect playbook.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -253,6 +253,45 @@
     .badge.blue { background: #EFF6FF; color: var(--blue); border-color: #BFDBFE; }
     .badge.orange { background: #FFF7ED; color: var(--orange); border-color: #FED7AA; }
 
+    /* ── BUILDER / ARCHITECT ── */
+    .roles-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 0; }
+    .role-block { padding: 28px 24px; border: 1px solid var(--rule); }
+    .role-block.builder { background: #FFF7ED; border-top: 4px solid var(--orange); border-radius: 12px 0 0 0; border-right: none; }
+    .role-block.architect { background: #EFF6FF; border-top: 4px solid var(--blue); border-radius: 0 12px 0 0; }
+    .role-tag { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
+    .role-block.builder .role-tag { color: var(--orange); }
+    .role-block.architect .role-tag { color: var(--blue); }
+    .role-sub { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+    .role-block ul { list-style: none; padding: 0; margin: 0; }
+    .role-block ul li { font-size: 14px; color: var(--ink); line-height: 1.6; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06); display: flex; align-items: flex-start; gap: 8px; }
+    .role-block ul li:last-child { border-bottom: none; padding-bottom: 0; }
+    .role-block ul li::before { content: "→"; flex-shrink: 0; font-weight: 700; }
+    .role-block.builder ul li::before { color: var(--orange); }
+    .role-block.architect ul li::before { color: var(--blue); }
+    .roles-tagline { background: var(--navy); color: white; text-align: center; font-size: 14px; font-weight: 600; padding: 14px 24px; border-radius: 0 0 12px 12px; margin-bottom: 48px; border: 1px solid var(--navy); }
+    .rails-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 48px; }
+    .rail-item { background: var(--bg); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; }
+    .rail-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--blue); text-transform: uppercase; margin-bottom: 6px; }
+    .rail-val { font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.5; }
+    .bj-grid { display: grid; gap: 0; border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; margin-bottom: 48px; }
+    .bj-item { display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; border-bottom: 1px solid var(--rule); background: white; }
+    .bj-item:last-child { border-bottom: none; }
+    .bj-num { font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 1px; flex-shrink: 0; padding-top: 2px; min-width: 24px; }
+    .bj-info h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .bj-info p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .relationship-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .rel-block { border-radius: 10px; padding: 20px; }
+    .rel-block.before { background: #FEF2F2; border: 1px solid #FCA5A5; }
+    .rel-block.after { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .rel-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .rel-block.before .rel-label { color: #EF4444; }
+    .rel-block.after .rel-label { color: #22C55E; }
+    .rel-chain { display: flex; flex-direction: column; gap: 6px; }
+    .rel-chain-item { font-size: 13px; font-weight: 500; color: var(--navy); background: white; border-radius: 6px; padding: 6px 10px; text-align: center; }
+    .rel-chain-arrow { font-size: 11px; color: var(--muted); text-align: center; }
+    .rel-note { margin-top: 12px; font-size: 12px; color: var(--muted); font-style: italic; text-align: center; }
+    .sub-label { font-size: 13px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; margin-top: 40px; padding-bottom: 8px; border-bottom: 2px solid var(--rule); }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       nav { padding: 12px 16px; }
@@ -269,8 +308,9 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-brand" href="#">David Balsam · Builder</a>
+  <a class="nav-brand" href="#">David Balsam · CPO</a>
   <div class="nav-links">
+    <a href="#roles">The Roles</a>
     <a href="#mindset">Mindset</a>
     <a href="#formula">Prompts</a>
     <a href="#stack">Stack</a>
@@ -282,7 +322,7 @@
 <div class="hero">
   <div class="hero-label">PM Live · 2026</div>
   <h1>How I Build<br><span>With AI</span></h1>
-  <p class="hero-sub">Real lessons from a CPO who ships production apps without a full-time dev team. No theory. Just what worked.</p>
+  <p class="hero-sub">Real lessons from a CPO and developer duo who shipped a fintech platform in 90 days using AI. Two roles, one playbook, no wasted sprints.</p>
   <div class="hero-author">
     <img class="hero-avatar" src="david.jpeg" alt="David Balsam">
     <div class="hero-author-info">
@@ -296,63 +336,180 @@
 <section id="context">
   <div class="container">
     <p class="section-label">The context</p>
-    <h2>I'm not an engineer.<br>I ship anyway.</h2>
-    <p class="section-intro">I run a fintech company with two apps, a legacy accounting system, regulatory requirements, and zero full-time developers. I build with Cursor, Lovable, and Supabase. Over the last year, I went from mockups to a full multi-tenant payment platform — in 90 days, with two people. These are the lessons.</p>
+    <h2>Two people. Ninety days.<br>A full fintech platform.</h2>
+    <p class="section-intro">I'm the CPO of Adesco, a fintech company with two apps, a legacy accounting system, and regulatory requirements. My developer and I built a full multi-tenant payment platform in 90 days using AI. One person owning product, design, and the customer. One person owning the code, security, and infrastructure. These are the lessons.</p>
 
     <div class="callout">
       <div class="callout-icon">💡</div>
       <div>
         <h3>The shift that changes everything</h3>
-        <p>You're not coding. You're designing systems. Every prompt is a brief you're giving to an engineer. Every bug is feedback from a user. Every edge case is a feature waiting to fail. Once you think this way, everything else follows.</p>
+        <p>Stop thinking about who writes the code. Start thinking about who owns what. The product person owns the brief, the customer, and the design. The developer owns the foundations, the safety, and the architecture. AI handles the translation between the two. Once you divide the roles this clearly, everything accelerates.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- BUILDER VS ARCHITECT -->
+<section id="roles">
+  <div class="container">
+    <p class="section-label">01 · The two roles</p>
+    <h2>Two roles. One shared goal.</h2>
+    <p class="section-intro">Every high-functioning team shipping with AI today divides into two roles. These are not titles. They are ways of working. The Builder owns what gets built and why. The Architect owns how it gets built and whether it holds. On our team, I run product. My developer runs the architecture. AI is what makes the two of us move like fifteen.</p>
+
+    <div class="roles-split">
+      <div class="role-block builder">
+        <div class="role-tag">Builder</div>
+        <p class="role-sub">Product · Design · Customer</p>
+        <ul>
+          <li>Defines what to build and writes the brief</li>
+          <li>Owns the customer relationship directly</li>
+          <li>Drives design language and UX decisions</li>
+          <li>Connects the full product surface end-to-end</li>
+        </ul>
+      </div>
+      <div class="role-block architect">
+        <div class="role-tag">Architect</div>
+        <p class="role-sub">Foundations · Security · Infrastructure</p>
+        <ul>
+          <li>Sets up the repo, branches, and prod workflow</li>
+          <li>Reviews every PR for safety before merge</li>
+          <li>Owns security, RLS, and data integrity</li>
+          <li>The safety net that lets the Builder move fast</li>
+        </ul>
+      </div>
+    </div>
+    <div class="roles-tagline">The Builder defines what gets built. The Architect makes sure it holds.</div>
+
+    <p class="sub-label">The Architect sets the rails — before the Builder writes a single prompt</p>
+
+    <div class="rails-grid">
+      <div class="rail-item">
+        <div class="rail-label">Prod repo</div>
+        <div class="rail-val">One shared codebase. Branch protection on main.</div>
+      </div>
+      <div class="rail-item">
+        <div class="rail-label">Branches</div>
+        <div class="rail-val">PR workflow for every feature. Nothing goes direct.</div>
+      </div>
+      <div class="rail-item">
+        <div class="rail-label">Automated tests</div>
+        <div class="rail-val">The safety net that lets the Builder move without fear.</div>
+      </div>
+      <div class="rail-item">
+        <div class="rail-label">Documentation</div>
+        <div class="rail-val">The collaboration layer between both roles.</div>
+      </div>
+    </div>
+
+    <p class="sub-label">What is the Builder's job?</p>
+
+    <div class="bj-grid">
+      <div class="bj-item">
+        <div class="bj-num">01</div>
+        <div class="bj-info">
+          <h4>Direct relationship with the customer</h4>
+          <p>Before AI: Customer to PM to Designer to Developer to QA. Two weeks. Translation loses things at every handoff. Today: Customer talks to the Builder directly. The Builder responds that same night. No chain. No delay.</p>
+        </div>
+      </div>
+      <div class="bj-item">
+        <div class="bj-num">02</div>
+        <div class="bj-info">
+          <h4>Customer experience, end to end</h4>
+          <p>The Builder plans the feature, reviews it with AI, writes the prompt brief, and tests the result as a user. Every feature passes through four stages without exception: Plan, Review, Build, Test.</p>
+        </div>
+      </div>
+      <div class="bj-item">
+        <div class="bj-num">03</div>
+        <div class="bj-info">
+          <h4>Design language</h4>
+          <p>Screenshot a UI you like and prompt: "Copy this and fit our format." Use shadcn/ui for components. Use 21st.dev for blocks that ship as ready code. The Builder owns consistency across the whole product — without a dedicated designer.</p>
+        </div>
+      </div>
+      <div class="bj-item">
+        <div class="bj-num">04</div>
+        <div class="bj-info">
+          <h4>Connecting the dots across the full surface</h4>
+          <p>Marketing page, product, back office, client email, dashboard, CRM. The Builder is the only person who sees the whole picture. Own that view. Make every handoff invisible to the user.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sub-label">The customer relationship shift</p>
+
+    <div class="relationship-compare">
+      <div class="rel-block before">
+        <div class="rel-label">Before AI</div>
+        <div class="rel-chain">
+          <div class="rel-chain-item">Customer</div>
+          <div class="rel-chain-arrow">↓</div>
+          <div class="rel-chain-item">Product Manager</div>
+          <div class="rel-chain-arrow">↓</div>
+          <div class="rel-chain-item">Designer</div>
+          <div class="rel-chain-arrow">↓</div>
+          <div class="rel-chain-item">Developer</div>
+          <div class="rel-chain-arrow">↓</div>
+          <div class="rel-chain-item">QA</div>
+        </div>
+        <div class="rel-note">Translation loses things. And takes two weeks.</div>
+      </div>
+      <div class="rel-block after">
+        <div class="rel-label">Today</div>
+        <div class="rel-chain">
+          <div class="rel-chain-item">Customer</div>
+          <div class="rel-chain-arrow">↓</div>
+          <div class="rel-chain-item" style="font-weight:700; background:#F0FDF4;">Builder</div>
+        </div>
+        <div class="rel-note">That same night.</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- MINDSET -->
 <section id="mindset">
   <div class="container">
-    <p class="section-label">01 · The mindset</p>
-    <h2>Before you build anything</h2>
-    <p class="section-intro">The mistakes I made when I started weren't technical. They were strategic. Here's what I wish I'd known.</p>
+    <p class="section-label">02 · The Builder's mindset</p>
+    <h2>How the Builder thinks</h2>
+    <p class="section-intro">The mistakes I made when I started weren't technical. They were about how I was thinking about the work. Here's what changed.</p>
 
     <div class="card-grid">
 
       <div class="card">
         <div class="card-num">01</div>
-        <h3>Plan before you build</h3>
-        <p>AI doesn't plan ahead unless you do. If you just say "build this," it starts at the top and skips everything else. Prompt together first — see the structure, make edits, then implement. Every time I skipped this step, it cost me.</p>
+        <h3>The prompt is the new spec</h3>
+        <p>Your job isn't to write code. It's to write the brief. Structure every prompt like a spec: what you're building, who it's for, what it should do, what it should look like, what states to handle, and what the constraints are. If you can't explain it clearly, the AI won't build it correctly.</p>
       </div>
 
       <div class="card">
         <div class="card-num">02</div>
-        <h3>Give context, always</h3>
-        <p>AI doesn't know your context. What page are you on? Which user sees this? Which component is affected? The more context you give, the less guessing it does. Take the extra 30 seconds. It saves hours.</p>
+        <h3>Plan first, always</h3>
+        <p>AI doesn't plan ahead unless you do. If you just say "build this," it starts at the top and skips everything else. Prompt to get the structure first, make edits, then implement. Every time I skipped this step, I paid for it later.</p>
       </div>
 
       <div class="card">
         <div class="card-num">03</div>
-        <h3>Design for real life, not the happy path</h3>
-        <p>Every feature you build has five states. If you only build the success state, you've built half a feature — and the other half will humiliate you in front of a user.</p>
-        <div class="card-highlight">Build every feature with 5 states: Default · Loading · Success · Error · Empty</div>
+        <h3>Build every feature with five states</h3>
+        <p>Default, Loading, Success, Error, Empty. If you only build the success state, you've built half a feature. The other half is what the user sees when something goes wrong — and they always notice.</p>
+        <div class="card-highlight">Every feature. Every time. Default · Loading · Success · Error · Empty</div>
       </div>
 
       <div class="card">
         <div class="card-num">04</div>
-        <h3>Git is your undo button</h3>
-        <p>Even if you're not technical, set up Git from day one. Use branches for each feature, commit often, push to GitHub. AI makes mistakes. So do you. Git means you can always go back.</p>
+        <h3>When everything collapses, stop</h3>
+        <p>Don't keep prompting into a broken context. Stop. Describe the problem as a user — not as a developer. Get AI feedback on why it's stuck. Start fresh from the plan. This is almost always faster than pushing through.</p>
       </div>
 
       <div class="card">
         <div class="card-num">05</div>
-        <h3>Track what users do</h3>
-        <p>If you don't log user events, you're building blind. Create a user_events table. Track login, key actions, form submissions. Ask yourself: can I answer "what did the user do?" If not, you're guessing.</p>
+        <h3>Build once, replicate five times</h3>
+        <p>Every pattern you build — an auth flow, a file upload, a multi-tenant structure — can be replicated. Turn your patterns into reusable prompts. What took two days the first time takes two hours the fifth time.</p>
       </div>
 
       <div class="card">
         <div class="card-num">06</div>
-        <h3>Test like a human, not a developer</h3>
-        <p>Log in. Log out. Go through the whole flow. Try it on mobile. Pretend it's your first time. Then try to break it — refresh mid-form, submit weird data, remove required fields. If it handles all of that, you're done.</p>
+        <h3>Test like a user, not a builder</h3>
+        <p>Log in. Log out. Go through the whole flow on mobile. Pretend it's your first time. Then try to break it — refresh mid-form, submit strange data, navigate away early. If it handles all of that, you're done.</p>
       </div>
 
     </div>
@@ -362,7 +519,7 @@
 <!-- PROMPT FORMULA -->
 <section id="formula">
   <div class="container">
-    <p class="section-label">02 · The prompt formula</p>
+    <p class="section-label">03 · The prompt formula</p>
     <h2>Structure every prompt like a brief</h2>
     <p class="section-intro">If you can't explain it clearly, the AI won't build it correctly. These six elements work at the beginning of a project and at the feature level as you go.</p>
 
@@ -399,70 +556,41 @@
       </div>
     </div>
 
-    <div style="margin-top: 40px;">
-      <p class="section-label" style="margin-bottom: 20px;">Key prompts · copy and use</p>
-
-      <div class="prompt-block">
-        <div class="prompt-label">When you're stuck in an error loop</div>
-        <pre>"Review the full code. List all issues you found. Suggest a fix for each one and share them with me. Then suggest a fix that addresses all the issues together."</pre>
-      </div>
-
-      <div class="prompt-block">
-        <div class="prompt-label">Build an auth flow</div>
-        <pre>"Create an authentication flow using Supabase. Include:
-- Sign-up: email + password + name
-- Login with email and password
-- Forgot password flow
-- Redirect: if onboarding incomplete → onboarding. Otherwise → dashboard."</pre>
-      </div>
-
-      <div class="prompt-block">
-        <div class="prompt-label">Multi-tenant data structure</div>
-        <pre>"Build a multi-tenant structure where each record is tied to a client_id. Allow an admin user to switch between clients using a dropdown, and make sure only the selected client's data is shown. Include role-based access logic and data filtering."</pre>
-      </div>
-
-      <div class="prompt-block">
-        <div class="prompt-label">File uploads</div>
-        <pre>"Set up a file upload system using Supabase Storage. Allow users to upload documents and save metadata in a 'documents' table with: user_id, file_url, type, label, created_at. Include functionality to update the label and delete the file."</pre>
-      </div>
-
-      <div class="prompt-block">
-        <div class="prompt-label">Security — Row-Level Security</div>
-        <pre>"Enable Row-Level Security in Supabase for all sensitive tables. Write RLS policies so users can only access rows where client_id matches their assigned client. For admin users, allow access to multiple clients. Add a 'role' field to differentiate user types."</pre>
-      </div>
-
-      <div class="prompt-block">
-        <div class="prompt-label">Wrap a component with all 5 states</div>
-        <pre>"Wrap this component with loading, success, error, and empty states. Add helpful CTAs for each state. If the API fails, show a retry button and a friendly error message. On mobile, show rows as cards instead of a table."</pre>
-      </div>
-
-    </div>
   </div>
 </section>
 
 <!-- THE STACK -->
 <section id="stack">
   <div class="container">
-    <p class="section-label">03 · The stack</p>
-    <h2>Four tools. That's it.</h2>
-    <p class="section-intro">I tried a lot of tools. These four stayed. Each one does one thing well, and they connect cleanly.</p>
+    <p class="section-label">04 · The stack</p>
+    <h2>Five tools. That's it.</h2>
+    <p class="section-intro">I tried a lot of tools. These five stayed. Each one does one thing well, and they connect cleanly.</p>
 
     <div>
       <div class="stack-item">
         <div class="stack-logo" style="background:#1B2A4A;">⌨️</div>
         <div class="stack-info">
           <h3>Cursor</h3>
-          <p>My main coding environment. I write every feature here using AI agents. It reads my codebase, understands context, and follows my custom skills. When Lovable hits its limits, Cursor handles the rest.</p>
+          <p>My main coding environment. I write every feature here using AI agents. It reads my codebase, understands context, and follows my custom skills.</p>
           <span class="stack-tag">Primary IDE</span>
         </div>
       </div>
 
       <div class="stack-item">
-        <div class="stack-logo" style="background:#7C3AED;">💜</div>
+        <div class="stack-logo" style="background:#000000;">🖤</div>
         <div class="stack-info">
-          <h3>Lovable</h3>
-          <p>Build full applications from a prompt — UI, logic, and Supabase integration in one place. Best for prototyping fast and validating quickly. Once things get complex, I move to Cursor.</p>
-          <span class="stack-tag">Rapid prototyping</span>
+          <h3>Claude Code</h3>
+          <p>Anthropic's CLI that runs directly in your terminal. It reads your entire codebase, executes commands, edits files, and runs tests. Best for complex multi-step tasks where you need an agent that actually understands context across files.</p>
+          <span class="stack-tag">Agentic CLI</span>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-logo" style="background:#18181B;">🧩</div>
+        <div class="stack-info">
+          <h3>shadcn/ui</h3>
+          <p>Copy-paste UI components built on Tailwind and Radix. You own the code, not a library. Buttons, modals, tables, forms — all consistent, accessible, and easy for Cursor to extend because the code is right there in your project.</p>
+          <span class="stack-tag">UI components</span>
         </div>
       </div>
 
@@ -496,7 +624,7 @@
 <!-- CURSOR SKILLS -->
 <section id="skills">
   <div class="container">
-    <p class="section-label">04 · Cursor skills</p>
+    <p class="section-label">05 · Cursor skills</p>
     <h2>The playbook I built so I stop repeating myself</h2>
     <p class="section-intro">Every time I told Cursor the same thing three times, I turned it into a skill. These six replace a marketing agency, a UX consultant, a safety team, and a stakeholder update process.</p>
 
@@ -567,16 +695,16 @@
 <!-- THE BACKEND BLUEPRINT -->
 <section id="backend">
   <div class="container">
-    <p class="section-label">05 · The backend blueprint</p>
-    <h2>How I built a real backend</h2>
-    <p class="section-intro">When people read my first guide, they asked: "OK but how do I build something where users can log in, upload files, and pay?" This is the answer. Six building blocks that work together.</p>
+    <p class="section-label">06 · The Architect's blueprint</p>
+    <h2>What the Architect builds first</h2>
+    <p class="section-intro">Before the Builder writes a single prompt for a feature, the Architect puts these six foundations in place. Without them, every feature you ship is one bug away from breaking everything else.</p>
 
     <div class="card-grid">
 
       <div class="card">
         <div class="card-num">01 · Auth</div>
         <h3>Login, sign-up, forgot password</h3>
-        <p>Use Supabase's built-in auth. Connect it in Lovable by pasting your project URL and key. You get sign-up, login, forgot password, and redirect logic out of the box. First-time users go to onboarding. Everyone else goes to their dashboard.</p>
+        <p>Use Supabase's built-in auth. Connect it in Cursor by pasting your project URL and key into the environment config. You get sign-up, login, forgot password, and redirect logic out of the box. First-time users go to onboarding. Everyone else goes to their dashboard.</p>
       </div>
 
       <div class="card">
