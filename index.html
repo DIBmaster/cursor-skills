@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How I Build With AI — David Balsam</title>
+  <title>How I Build With AI · David Balsam</title>
   <meta name="description" content="How a CPO and a developer used AI to ship a fintech platform in 90 days. The Builder and Architect playbook.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -253,6 +253,13 @@
     .badge.blue { background: #EFF6FF; color: var(--blue); border-color: #BFDBFE; }
     .badge.orange { background: #FFF7ED; color: var(--orange); border-color: #FED7AA; }
 
+    /* ── HERO STATS ── */
+    .hero-stats { display: flex; align-items: center; justify-content: center; margin: 36px auto 0; gap: 0; }
+    .hero-stat { text-align: center; padding: 0 28px; }
+    .hero-stat-num { display: block; font-size: 40px; font-weight: 900; color: white; line-height: 1; }
+    .hero-stat-label { display: block; font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 6px; letter-spacing: 0.5px; }
+    .hero-stat-div { font-size: 28px; color: rgba(255,255,255,0.15); flex-shrink: 0; }
+
     /* ── BUILDER / ARCHITECT ── */
     .roles-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 0; }
     .role-block { padding: 28px 24px; border: 1px solid var(--rule); }
@@ -308,7 +315,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-brand" href="#">David Balsam · CPO</a>
+  <a class="nav-brand" href="#">David Balsam · CPO, Adesco</a>
   <div class="nav-links">
     <a href="#roles">The Roles</a>
     <a href="#mindset">Mindset</a>
@@ -320,14 +327,30 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-label">PM Live · 2026</div>
+  <div class="hero-label">For PMs, founders &amp; product teams · PM Live 2026</div>
   <h1>How I Build<br><span>With AI</span></h1>
-  <p class="hero-sub">Real lessons from a CPO and developer duo who shipped a fintech platform in 90 days using AI. Two roles, one playbook, no wasted sprints.</p>
-  <div class="hero-author">
+  <p class="hero-sub">I'm the CPO of a fintech company. My developer and I shipped a full payment platform in 90 days. This is the exact playbook we used.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">90</span>
+      <span class="hero-stat-label">days to ship</span>
+    </div>
+    <div class="hero-stat-div">·</div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">2</span>
+      <span class="hero-stat-label">people</span>
+    </div>
+    <div class="hero-stat-div">·</div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">15×</span>
+      <span class="hero-stat-label">team equivalent</span>
+    </div>
+  </div>
+  <div class="hero-author" style="margin-top: 36px;">
     <img class="hero-avatar" src="david.jpeg" alt="David Balsam">
     <div class="hero-author-info">
       <div class="hero-author-name">David Balsam</div>
-      <div class="hero-author-role">CPO & Co-Founder, Adesco · Fintech Builder</div>
+      <div class="hero-author-role">CPO & Co-Founder, Adesco · Building fintech with AI</div>
     </div>
   </div>
 </div>
@@ -337,13 +360,14 @@
   <div class="container">
     <p class="section-label">The context</p>
     <h2>Two people. Ninety days.<br>A full fintech platform.</h2>
-    <p class="section-intro">I'm the CPO of Adesco, a fintech company with two apps, a legacy accounting system, and regulatory requirements. My developer and I built a full multi-tenant payment platform in 90 days using AI. One person owning product, design, and the customer. One person owning the code, security, and infrastructure. These are the lessons.</p>
+    <p class="section-intro">I'm the CPO of Adesco. We have two apps, a legacy accounting system, and regulatory requirements that touch every feature we ship. A few years ago I had a team of analysts, designers, and developers around me — and I still felt stuck. Every idea went through five people before a user ever saw it. By the time it shipped, the moment had passed.</p>
+    <p class="section-intro" style="margin-top: 16px;">So my developer and I tried something different. We stopped handing things off and started dividing ownership. I own product, design, and the customer. He owns the code, security, and infrastructure. AI is the translation layer between us. We built a full multi-tenant payment platform in 90 days. These are the lessons.</p>
 
     <div class="callout">
       <div class="callout-icon">💡</div>
       <div>
-        <h3>The shift that changes everything</h3>
-        <p>Stop thinking about who writes the code. Start thinking about who owns what. The product person owns the brief, the customer, and the design. The developer owns the foundations, the safety, and the architecture. AI handles the translation between the two. Once you divide the roles this clearly, everything accelerates.</p>
+        <h3>The moment it clicked</h3>
+        <p>I described a feature to my developer the same way I'd describe it to a customer. Not a spec. Not a ticket. Just: here's the problem, here's who has it, here's what the solution should feel like. He took that directly into Cursor and shipped it. No PM translation layer. No design handoff delay. The brief became the spec. That's when I understood what had actually changed.</p>
       </div>
     </div>
   </div>
@@ -380,7 +404,7 @@
     </div>
     <div class="roles-tagline">The Builder defines what gets built. The Architect makes sure it holds.</div>
 
-    <p class="sub-label">The Architect sets the rails — before the Builder writes a single prompt</p>
+    <p class="sub-label">The Architect sets the rails. Before the Builder writes a single prompt.</p>
 
     <div class="rails-grid">
       <div class="rail-item">
@@ -422,7 +446,7 @@
         <div class="bj-num">03</div>
         <div class="bj-info">
           <h4>Design language</h4>
-          <p>Screenshot a UI you like and prompt: "Copy this and fit our format." Use shadcn/ui for components. Use 21st.dev for blocks that ship as ready code. The Builder owns consistency across the whole product — without a dedicated designer.</p>
+          <p>Screenshot a UI you like and prompt: "Copy this and fit our format." Use shadcn/ui for components. Use 21st.dev for blocks that ship as ready code. The Builder owns consistency across the whole product. No dedicated designer needed.</p>
         </div>
       </div>
       <div class="bj-item">
@@ -490,26 +514,26 @@
       <div class="card">
         <div class="card-num">03</div>
         <h3>Build every feature with five states</h3>
-        <p>Default, Loading, Success, Error, Empty. If you only build the success state, you've built half a feature. The other half is what the user sees when something goes wrong — and they always notice.</p>
+        <p>Default, Loading, Success, Error, Empty. If you only build the success state, you've built half a feature. The other half is what the user sees when something goes wrong. And they always notice.</p>
         <div class="card-highlight">Every feature. Every time. Default · Loading · Success · Error · Empty</div>
       </div>
 
       <div class="card">
         <div class="card-num">04</div>
         <h3>When everything collapses, stop</h3>
-        <p>Don't keep prompting into a broken context. Stop. Describe the problem as a user — not as a developer. Get AI feedback on why it's stuck. Start fresh from the plan. This is almost always faster than pushing through.</p>
+        <p>Don't keep prompting into a broken context. Stop. Describe the problem as a user, not as a developer. Get AI feedback on why it's stuck. Start fresh from the plan. This is almost always faster than pushing through.</p>
       </div>
 
       <div class="card">
         <div class="card-num">05</div>
         <h3>Build once, replicate five times</h3>
-        <p>Every pattern you build — an auth flow, a file upload, a multi-tenant structure — can be replicated. Turn your patterns into reusable prompts. What took two days the first time takes two hours the fifth time.</p>
+        <p>Every pattern you build (an auth flow, a file upload, a multi-tenant structure) can be replicated. Turn your patterns into reusable prompts. What took two days the first time takes two hours the fifth time.</p>
       </div>
 
       <div class="card">
         <div class="card-num">06</div>
         <h3>Test like a user, not a builder</h3>
-        <p>Log in. Log out. Go through the whole flow on mobile. Pretend it's your first time. Then try to break it — refresh mid-form, submit strange data, navigate away early. If it handles all of that, you're done.</p>
+        <p>Log in. Log out. Go through the whole flow on mobile. Pretend it's your first time. Then try to break it: refresh mid-form, submit strange data, navigate away early. If it handles all of that, you're done.</p>
       </div>
 
     </div>
@@ -589,7 +613,7 @@
         <div class="stack-logo" style="background:#18181B;">🧩</div>
         <div class="stack-info">
           <h3>shadcn/ui</h3>
-          <p>Copy-paste UI components built on Tailwind and Radix. You own the code, not a library. Buttons, modals, tables, forms — all consistent, accessible, and easy for Cursor to extend because the code is right there in your project.</p>
+          <p>Copy-paste UI components built on Tailwind and Radix. You own the code, not a library. Buttons, modals, tables, forms. All consistent, accessible, and easy for Cursor to extend because the code is right there in your project.</p>
           <span class="stack-tag">UI components</span>
         </div>
       </div>
@@ -625,8 +649,8 @@
 <section id="skills">
   <div class="container">
     <p class="section-label">05 · Cursor skills</p>
-    <h2>The playbook I built so I stop repeating myself</h2>
-    <p class="section-intro">Every time I told Cursor the same thing three times, I turned it into a skill. These six replace a marketing agency, a UX consultant, a safety team, and a stakeholder update process.</p>
+    <h2>Six skills I run on every feature</h2>
+    <p class="section-intro">A Cursor skill is a saved instruction set. You run it once, get a structured output, and act on it. Every skill below is free to copy from GitHub. Each one replaces something I used to wait on — a review, a checklist, an update email.</p>
 
     <div style="margin-bottom: 32px;">
 
@@ -634,7 +658,7 @@
         <div class="skill-icon" style="background:#FFF7ED;">💰</div>
         <div class="skill-info">
           <h3>CMO Conversion Review</h3>
-          <p>"Will this page make money?" — Gives a conversion grade, competitive positioning, and a prioritized 1-hour fix list.</p>
+          <p>Point it at any page. Returns a letter grade (A to D), a line-by-line critique of what's killing conversion, and a ranked fix list you can act on in under an hour. I run this before every landing page goes live.</p>
         </div>
         <div class="skill-grade">Page Review</div>
       </div>
@@ -643,7 +667,7 @@
         <div class="skill-icon" style="background:#EFF6FF;">✍️</div>
         <div class="skill-info">
           <h3>Content Review</h3>
-          <p>"Is the copy clear and on-brand?" — Checks tone consistency, readability, and gives specific rewrite suggestions.</p>
+          <p>Reads every sentence and flags what's vague, off-brand, or too long. Returns specific rewrites, not just direction. Run it on any page, email, or blog post before it goes anywhere a customer might read it.</p>
         </div>
         <div class="skill-grade">Page Review</div>
       </div>
@@ -652,7 +676,7 @@
         <div class="skill-icon" style="background:#F0FDF4;">🔍</div>
         <div class="skill-info">
           <h3>SEO & AI Citation Review</h3>
-          <p>"Will Google and ChatGPT find this?" — Audits metadata, structured data, heading hierarchy, and AI citation readiness.</p>
+          <p>Runs 12 checks across meta tags, heading structure, internal links, and AI-readability signals. Returns pass/fail on each with a specific fix for every failure. Important now that ChatGPT and Perplexity cite pages directly.</p>
         </div>
         <div class="skill-grade">Page Review</div>
       </div>
@@ -661,7 +685,7 @@
         <div class="skill-icon" style="background:#FDF4FF;">🎨</div>
         <div class="skill-info">
           <h3>UX / Design Review</h3>
-          <p>"Does this feel right to use?" — Checks mobile responsiveness, accessibility, visual hierarchy, and touch targets.</p>
+          <p>Maps friction points by severity. Catches missing feature states (what shows when the list is empty?), accessibility gaps, and mobile issues your eye misses on a desktop screen. Run it after every new UI component.</p>
         </div>
         <div class="skill-grade">Page Review</div>
       </div>
@@ -670,7 +694,7 @@
         <div class="skill-icon" style="background:#FFF1F2;">🛡️</div>
         <div class="skill-info">
           <h3>Pre-Deploy Checklist</h3>
-          <p>Reviews every changed file for security issues, cross-app breakage, missing error handling, and floating point money bugs. Returns: GO / NEEDS FIXES / DO NOT DEPLOY.</p>
+          <p>Reads every file that changed before a deploy. Returns GO, NEEDS FIXES, or DO NOT DEPLOY with a specific list of what to address. Built for fintech: catches floating-point money bugs, missing RLS, and cross-app breakage. Runs in about 20 seconds.</p>
         </div>
         <div class="skill-grade">Safety</div>
       </div>
@@ -679,7 +703,7 @@
         <div class="skill-icon" style="background:#F0FDF4;">📋</div>
         <div class="skill-info">
           <h3>Product Update</h3>
-          <p>Reads your git history and generates a clean, non-technical summary for stakeholders. No jargon, no commit hashes — just what changed and who it helps.</p>
+          <p>Reads your git history and writes a plain-English summary of what shipped. Safe to paste into Slack, drop into a client email, or send to your board. No jargon, no commit hashes. Just what changed and who it helps.</p>
         </div>
         <div class="skill-grade">Communication</div>
       </div>
@@ -687,7 +711,7 @@
     </div>
 
     <a href="https://github.com/DIBmaster/cursor-skills" target="_blank" rel="noopener" class="btn btn-ghost" style="display:inline-flex;">
-      <span>⭐</span> View all skills on GitHub
+      <span>⭐</span> Copy all skills from GitHub
     </a>
   </div>
 </section>
@@ -710,7 +734,7 @@
       <div class="card">
         <div class="card-num">02 · Multi-tenant</div>
         <h3>One app, many clients</h3>
-        <p>Every record in your database gets a client_id. Admins can switch between clients via a dropdown. Users only see data for their current client. I tested this with mock data first — two fake clients with completely separate records — to catch cross-client bugs early.</p>
+        <p>Every record in your database gets a client_id. Admins can switch between clients via a dropdown. Users only see data for their current client. I tested this with mock data first, using two fake clients with completely separate records, to catch cross-client bugs early.</p>
       </div>
 
       <div class="card">
@@ -734,7 +758,7 @@
       <div class="card">
         <div class="card-num">06 · Third-party integrations</div>
         <h3>Edge functions for everything else</h3>
-        <p>Need to send emails, post to Slack, trigger an automation? Use Supabase Edge Functions. Small backend scripts that run on events. Store API keys as environment variables — never expose them in the frontend. This is how I connected to Resend, payment APIs, and more.</p>
+        <p>Need to send emails, post to Slack, trigger an automation? Use Supabase Edge Functions. Small backend scripts that run on events. Store API keys as environment variables. Never expose them in the frontend. This is how I connected to Resend, payment APIs, and more.</p>
       </div>
 
     </div>
@@ -744,14 +768,14 @@
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <h2>Let's keep building.</h2>
-    <p>Questions, feedback, or want to share what you built?<br>I'd genuinely love to hear from you.</p>
+    <h2>I post every week about what we shipped,<br>what broke, and what I learned.</h2>
+    <p>If you're a PM, founder, or product team building with AI, follow along on LinkedIn.<br>It's the fastest way to stay current on what's actually working.</p>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/david-balsam-36047280/" target="_blank" rel="noopener" class="btn btn-primary">
-        <span>💼</span> Connect on LinkedIn
+        <span>💼</span> Follow on LinkedIn
       </a>
       <a href="https://github.com/DIBmaster/cursor-skills" target="_blank" rel="noopener" class="btn btn-secondary">
-        <span>⭐</span> Cursor Skills on GitHub
+        <span>⭐</span> Copy the skills on GitHub
       </a>
     </div>
     <p class="footer-note">David Balsam · CPO & Co-Founder, Adesco · PM Live 2026</p>
