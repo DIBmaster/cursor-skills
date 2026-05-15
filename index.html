@@ -222,6 +222,40 @@
     .callout p { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
     /* ── FOOTER ── */
+    /* ── SPEAKING FORM ── */
+    .speaking-intro { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+    .contact-form { display: grid; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--blue); background: white; }
+    .contact-form textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      background: var(--blue); color: white;
+      border: none; border-radius: 8px;
+      padding: 14px 28px; font-size: 15px; font-weight: 700;
+      cursor: pointer; transition: background 0.15s;
+      justify-self: start;
+    }
+    .form-submit:hover { background: #005BB5; }
+    .form-success {
+      display: none; padding: 16px 20px;
+      background: #ECFDF5; border: 1px solid #6EE7B7;
+      border-radius: 8px; color: #065F46; font-size: 14px; font-weight: 500;
+    }
+
     footer {
       background: var(--navy);
       padding: 56px 24px;
@@ -322,6 +356,7 @@
     <a href="#formula">Prompts</a>
     <a href="#stack">Stack</a>
     <a href="#skills">Skills</a>
+    <a href="#speaking">Invite Me</a>
   </div>
 </nav>
 
@@ -329,7 +364,7 @@
 <div class="hero">
   <div class="hero-label">For PMs, founders &amp; product teams · PM Live 2026</div>
   <h1>How I Build<br><span>With AI</span></h1>
-  <p class="hero-sub">I'm the CPO of a fintech company. My developer and I shipped a full payment platform in 90 days. This is the exact playbook we used.</p>
+  <p class="hero-sub">I'm the CPO of a fintech company. Me and my technical co-founder shipped a full payment platform in 90 days. Today a year after, we keep shipping new features at a rapid pace. This is the exact playbook we use.</p>
   <div class="hero-stats">
     <div class="hero-stat">
       <span class="hero-stat-num">90</span>
@@ -360,14 +395,14 @@
   <div class="container">
     <p class="section-label">The context</p>
     <h2>Two people. Ninety days.<br>A full fintech platform.</h2>
-    <p class="section-intro">I'm the CPO of Adesco. We have two apps, a legacy accounting system, and regulatory requirements that touch every feature we ship. A few years ago I had a team of analysts, designers, and developers around me — and I still felt stuck. Every idea went through five people before a user ever saw it. By the time it shipped, the moment had passed.</p>
-    <p class="section-intro" style="margin-top: 16px;">So my developer and I tried something different. We stopped handing things off and started dividing ownership. I own product, design, and the customer. He owns the code, security, and infrastructure. AI is the translation layer between us. We built a full multi-tenant payment platform in 90 days. These are the lessons.</p>
+    <p class="section-intro">Hi, I'm David Balsam, Co-Founder and CPO of Adesco. In the past year, two people shipped a full multi-tenant payment platform, a backoffice, third-party APIs, and regulatory compliance. No handoffs. No waiting. No lost momentum.</p>
+    <p class="section-intro" style="margin-top: 16px;">The old way: I had ideas, five people touched them, users saw them six months later. The new way: my co-founder owns the code, security, and infrastructure. I own product, design, and the customer. We both work in the same codebase, each adding where we're strongest. Everything below is the playbook.</p>
 
     <div class="callout">
       <div class="callout-icon">💡</div>
       <div>
         <h3>The moment it clicked</h3>
-        <p>I described a feature to my developer the same way I'd describe it to a customer. Not a spec. Not a ticket. Just: here's the problem, here's who has it, here's what the solution should feel like. He took that directly into Cursor and shipped it. No PM translation layer. No design handoff delay. The brief became the spec. That's when I understood what had actually changed.</p>
+        <p>I built our early product in Lovable. When we needed to scale, my co-founder rebuilt the architecture in Cursor. At that point he said: why do I rebuild what you can build? He showed me our repo, Supabase, how to branch, how to test on dev. Then he stepped back. I never handed off again.</p>
       </div>
     </div>
   </div>
@@ -378,42 +413,42 @@
   <div class="container">
     <p class="section-label">01 · The two roles</p>
     <h2>Two roles. One shared goal.</h2>
-    <p class="section-intro">Every high-functioning team shipping with AI today divides into two roles. These are not titles. They are ways of working. The Builder owns what gets built and why. The Architect owns how it gets built and whether it holds. On our team, I run product. My developer runs the architecture. AI is what makes the two of us move like fifteen.</p>
+    <p class="section-intro">Every team shipping with AI today divides into two roles. These are not titles. They are ways of working. There are architects, they are in charge of the foundations and security of the codebase. The Builder owns the customer experience of the product. AI is what makes the two of us move fast and like we are a fifteen person team.</p>
 
     <div class="roles-split">
       <div class="role-block builder">
         <div class="role-tag">Builder</div>
         <p class="role-sub">Product · Design · Customer</p>
         <ul>
-          <li>Defines what to build and writes the brief</li>
           <li>Owns the customer relationship directly</li>
-          <li>Drives design language and UX decisions</li>
-          <li>Connects the full product surface end-to-end</li>
+          <li>Understands the needs and pain points</li>
+          <li>Builds the customer experience</li>
+          <li>Connects all the flows & stakeholders</li>
         </ul>
       </div>
       <div class="role-block architect">
         <div class="role-tag">Architect</div>
-        <p class="role-sub">Foundations · Security · Infrastructure</p>
+        <p class="role-sub">Foundations · Security · Infra</p>
         <ul>
-          <li>Sets up the repo, branches, and prod workflow</li>
-          <li>Reviews every PR for safety before merge</li>
-          <li>Owns security, RLS, and data integrity</li>
-          <li>The safety net that lets the Builder move fast</li>
+          <li>Sets the repo, environments & CI/CD</li>
+          <li>Owns security, and data integrity</li>
+          <li>Builds complex features in the product</li>
+          <li>Reviews big changes when required</li>
         </ul>
       </div>
     </div>
-    <div class="roles-tagline">The Builder defines what gets built. The Architect makes sure it holds.</div>
+    <div class="roles-tagline">The Architect sets the rails. The Builder builds within them.</div>
 
-    <p class="sub-label">The Architect sets the rails. Before the Builder writes a single prompt.</p>
+    <p class="sub-label">The Architect sets the foundations. Before the Builder builds anything.</p>
 
     <div class="rails-grid">
       <div class="rail-item">
-        <div class="rail-label">Prod repo</div>
-        <div class="rail-val">One shared codebase. Branch protection on main.</div>
+        <div class="rail-label">Product repo</div>
+        <div class="rail-val">The place where product can build. Branch protection on main.</div>
       </div>
       <div class="rail-item">
         <div class="rail-label">Branches</div>
-        <div class="rail-val">PR workflow for every feature. Nothing goes direct.</div>
+        <div class="rail-val">PR and CI/CD for every feature. Nothing is deployed wrongfully.</div>
       </div>
       <div class="rail-item">
         <div class="rail-label">Automated tests</div>
@@ -421,7 +456,7 @@
       </div>
       <div class="rail-item">
         <div class="rail-label">Documentation</div>
-        <div class="rail-val">The collaboration layer between both roles.</div>
+        <div class="rail-val">The collaboration layer between both roles. Shared knowledge and context.</div>
       </div>
     </div>
 
@@ -432,14 +467,14 @@
         <div class="bj-num">01</div>
         <div class="bj-info">
           <h4>Direct relationship with the customer</h4>
-          <p>Before AI: Customer to PM to Designer to Developer to QA. Two weeks. Translation loses things at every handoff. Today: Customer talks to the Builder directly. The Builder responds that same night. No chain. No delay.</p>
+          <p>Before AI: Customer to PM to Designer to Developer to QA. Two weeks. Translation loses things at every handoff. Today: Customer talks to the Builder directly. The Builder builds the feature that same night. No chain. No delay.</p>
         </div>
       </div>
       <div class="bj-item">
         <div class="bj-num">02</div>
         <div class="bj-info">
           <h4>Customer experience, end to end</h4>
-          <p>The Builder plans the feature, reviews it with AI, writes the prompt brief, and tests the result as a user. Every feature passes through four stages without exception: Plan, Review, Build, Test.</p>
+          <p>The Builder plans the feature, reviews it with AI, builds it in stages based on the foundations, and tests the result as a user. Every feature passes through these four stages without exception: Plan, Review, Build, Test. No shortcuts. </p>
         </div>
       </div>
       <div class="bj-item">
@@ -453,7 +488,7 @@
         <div class="bj-num">04</div>
         <div class="bj-info">
           <h4>Connecting the dots across the full surface</h4>
-          <p>Marketing page, product, back office, client email, dashboard, CRM. The Builder is the only person who sees the whole picture. Own that view. Make every handoff invisible to the user.</p>
+          <p>Marketing page, product, back office, client email, dashboard, CRM. The Builder is the only person who sees the whole picture. Own that view. Make every handoff invisible to the user. And manages the relationships with the stakeholders.</p>
         </div>
       </div>
     </div>
@@ -716,54 +751,46 @@
   </div>
 </section>
 
-<!-- THE BACKEND BLUEPRINT -->
-<section id="backend">
+<!-- SPEAKING -->
+<section id="speaking">
   <div class="container">
-    <p class="section-label">06 · The Architect's blueprint</p>
-    <h2>What the Architect builds first</h2>
-    <p class="section-intro">Before the Builder writes a single prompt for a feature, the Architect puts these six foundations in place. Without them, every feature you ship is one bug away from breaking everything else.</p>
+    <p class="section-label">Bring this to your team</p>
+    <h2>I lecture at companies building with AI.</h2>
+    <p class="speaking-intro">This playbook is not just for product teams at startups. I've taken it to companies across Israel and taught their product, tech, and leadership teams how to move faster with AI. If you want me to run a session at your company, fill in your details below and I'll get back to you.</p>
 
-    <div class="card-grid">
-
-      <div class="card">
-        <div class="card-num">01 · Auth</div>
-        <h3>Login, sign-up, forgot password</h3>
-        <p>Use Supabase's built-in auth. Connect it in Cursor by pasting your project URL and key into the environment config. You get sign-up, login, forgot password, and redirect logic out of the box. First-time users go to onboarding. Everyone else goes to their dashboard.</p>
+    <form
+      class="contact-form"
+      action="https://formsubmit.co/ajax/dbalsam88@gmail.com"
+      method="POST"
+    >
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="text" name="company" placeholder="Company" required>
       </div>
-
-      <div class="card">
-        <div class="card-num">02 · Multi-tenant</div>
-        <h3>One app, many clients</h3>
-        <p>Every record in your database gets a client_id. Admins can switch between clients via a dropdown. Users only see data for their current client. I tested this with mock data first, using two fake clients with completely separate records, to catch cross-client bugs early.</p>
+      <div class="form-row">
+        <input type="email" name="email" placeholder="Email address" required>
+        <input type="tel" name="phone" placeholder="Phone number">
       </div>
-
-      <div class="card">
-        <div class="card-num">03 · Payments & Balances</div>
-        <h3>Track every cent</h3>
-        <p>Build a balances table (user_id, currency, amount) and a transactions table (user_id, amount, currency, recipient_id, timestamp, status). Status starts as pending, moves to completed or failed. When completed, subtract from balance. This becomes the backbone of the product.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-num">04 · File Uploads</div>
-        <h3>Documents, IDs, contracts</h3>
-        <p>Uploads go to Supabase Storage. Each file gets metadata in a documents table: user_id, file_url, type, label, created_at. Users can rename and delete files. All paperwork, secured, organized, in the app.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-num">05 · Security</div>
-        <h3>Row-Level Security</h3>
-        <p>Enable RLS on every table. Users can only read rows where client_id matches theirs. Admins get access to their assigned clients only. Add a role field to users to differentiate. If you handle money or personal data, this is not optional.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-num">06 · Third-party integrations</div>
-        <h3>Edge functions for everything else</h3>
-        <p>Need to send emails, post to Slack, trigger an automation? Use Supabase Edge Functions. Small backend scripts that run on events. Store API keys as environment variables. Never expose them in the frontend. This is how I connected to Resend, payment APIs, and more.</p>
-      </div>
-
-    </div>
+      <button type="submit" class="form-submit">Send me a message</button>
+    </form>
+    <div class="form-success" id="form-success">Thanks! I'll be in touch shortly.</div>
   </div>
 </section>
+
+<script>
+  const form = document.querySelector('#speaking form');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }
+    });
+  }
+</script>
 
 <!-- FOOTER -->
 <footer>
